@@ -1,71 +1,7 @@
 <template>
     <div class="sell">
 
-      <div class="nav-side-menu">
-        <div class="brand">奧丁丁旅館</div>
-        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-      
-            <div class="menu-list">
-      
-                <ul id="menu-content" class="menu-content collapse out">
-                    <li class="active">
-                      <a href="#/home">
-                      <i class="fa fa-home" style="font-size:19px" aria-hidden="true"></i>&nbsp;     櫃檯接待
-                      </a>
-                    </li>
-
-                    <li  data-toggle="collapse" data-target="#products" class="collapsed">
-                      <a href="#"><i class="fa fa-address-book-o" style="font-size:19px" aria-hidden="true"></i>&nbsp;     房號安排 <span class="arrow"></span></a>
-                    </li>
-                    <ul class="sub-menu collapse" id="products">
-                        <li><a href="#">CSS3 Animation</a></li>
-                        <li><a href="#">General</a></li>
-                        <li><a href="#">Buttons</a></li>
-                        <li><a href="#">Tabs & Accordions</a></li>
-                        <li><a href="#">Typography</a></li>
-                        <li><a href="#">FontAwesome</a></li>
-                        <li><a href="#">Slider</a></li>
-                        <li><a href="#">Panels</a></li>
-                        <li><a href="#">Widgets</a></li>
-                        <li><a href="#">Bootstrap Model</a></li>
-                    </ul>
-
-
-                    <li data-toggle="collapse" data-target="#service" class="collapsed">
-                      <a href="#"><i class="fa fa-gift" style="font-size:19px" aria-hidden="true"></i>&nbsp;     空房查詢 <span class="arrow"></span></a>
-                    </li>  
-                    <ul class="sub-menu collapse" id="service">
-                      <li>New Service 1</li>
-                      <li>New Service 2</li>
-                      <li>New Service 3</li>
-                    </ul>
-
-
-                    <li data-toggle="collapse" data-target="#new" class="collapsed">
-                      <a href="#"><i class="fa fa-address-card" style="font-size:19px" aria-hidden="true"></i>&nbsp;     訂單管理 <span class="arrow"></span></a>
-                    </li>
-                    <ul class="sub-menu collapse" id="new">
-                      <li>New New 1</li>
-                      <li>New New 2</li>
-                      <li>New New 3</li>
-                    </ul>
-
-
-                     <li>
-                      <a href="#">
-                      <i class="fa fa-user-circle-o" style="font-size:19px" aria-hidden="true"></i>&nbsp;     房務管理
-                      </a>
-                      </li>
-
-                     <li>
-                      <a href="#">
-                      <i class="fa fa-hotel" style="font-size:19px" aria-hidden="true"></i>&nbsp;     房務清潔
-                      </a>
-                    </li>
-                </ul>
-         </div>
-      </div>
-
+      <navbar></navbar>
 
       <div class="content">
 
@@ -128,8 +64,6 @@
         </div>
 
         <button class="btn btn-primary"  v-on:click="send_order">送出訂單</button>
-        <div> {{room_id}} </div>
-
       </div>
       
 
@@ -140,10 +74,12 @@
 
 // import toastr from 'toastr'
 import Datepicker from 'vuejs-datepicker'
+import Navbar from './navbar'
 
 export default {
   components: {
-    Datepicker
+    Datepicker,
+    Navbar
   },
   name: 'sell',
   data () {
@@ -161,8 +97,10 @@ export default {
     send_order: function () {
       var postdata = {
         'name': this.order.name,
-        'room_id': this.order.room_id
+        'room_id': this.room_id[0],
+        'checkin_date': this.order.checkin_date.toLocaleDateString()
       }
+      console.log(postdata.checkin_date)
       this.$http.post(this.post_url, postdata)
           .then((response) => {
             console.log(response.data + '!')
