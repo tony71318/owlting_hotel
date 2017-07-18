@@ -1,5 +1,5 @@
 <template>
-    <div class="sell">
+    <div class="empty">
 
       <div class="nav-side-menu">
         <div class="brand">奧丁丁旅館</div>
@@ -69,7 +69,7 @@
 
       <div class="content">
 
-        <div class="detail">
+        <!-- <div class="detail">
           <h4>*查詢空房</h4>
           <div class="detail-white">
             <div class="form-group">
@@ -98,9 +98,9 @@
             
 
           </div>
-        </div>
+        </div> -->
 
-        <div class="room">
+    <!--     <div class="room">
           <h4>*選擇欲入住之房間</h4>
           <div class="room-white">
             <div class="form-group">
@@ -127,7 +127,7 @@
           </div>
         </div>
 
-        <button class="btn btn-primary"  v-on:click="send_order">送出訂單</button>
+        <button class="btn btn-primary"  v-on:click="send_order">送出訂單</button> -->
       </div>
       
 
@@ -137,34 +137,34 @@
 <script>
 
 // import toastr from 'toastr'
-import Datepicker from 'vuejs-datepicker'
+// import Datepicker from 'vuejs-datepicker'
 
-export default {
-  components: {
-    Datepicker
-  },
-  name: 'sell',
-  data () {
-    return {
-      date_format: 'yyyyMMdd',
-      post_url: 'http://localhost:8000/ethereum/booking_contract/orders/post/',
-      order: [],
-      single_price: 1000,
-      double_price: 2000,
-      disable: true
-    }
-  },
-  methods: {
-    send_order: function () {
-      var vm = this
-      vm.$http.post(vm.post_url, {name: 'fuck'})
-          .then((response) => {
-            console.log(response.data + '!')
-          })
-      this.show = false
-    }
-  }
-}
+// export default {
+//   components: {
+//     Datepicker
+//   },
+//   name: 'sell',
+//   data () {
+//     return {
+//       date_format: 'yyyyMMdd',
+//       post_url: 'http://localhost:8000/ethereum/booking_contract/orders/post/',
+//       order: [],
+//       single_price: 1000,
+//       double_price: 2000,
+//       disable: true
+//     }
+//   },
+//   methods: {
+//     send_order: function () {
+//       var vm = this
+//       vm.$http.post(vm.post_url, {name: 'fuck'})
+//           .then((response) => {
+//             console.log(response.data + '!')
+//           })
+//       this.show = false
+//     }
+//   }
+// }
 
 </script>
 

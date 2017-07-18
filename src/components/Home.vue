@@ -31,15 +31,10 @@
                         <li><a href="#">Bootstrap Model</a></li>
                     </ul>
 
-
-                    <li data-toggle="collapse" data-target="#service" class="collapsed">
-                      <a href="#"><i class="fa fa-gift" style="font-size:19px" aria-hidden="true"></i>&nbsp;     空房查詢 <span class="arrow"></span></a>
-                    </li>  
-                    <ul class="sub-menu collapse" id="service">
-                      <li>New Service 1</li>
-                      <li>New Service 2</li>
-                      <li>New Service 3</li>
-                    </ul>
+                    <li>
+                      <a href="#/empty">
+                      <i class="fa fa-gift" style="font-size:19px" aria-hidden="true"></i>&nbsp;     空房查詢</a>
+                    </li>
 
 
                     <li data-toggle="collapse" data-target="#new" class="collapsed">
@@ -52,11 +47,11 @@
                     </ul>
 
 
-                     <li>
+                    <li>
                       <a href="#">
                       <i class="fa fa-user-circle-o" style="font-size:19px" aria-hidden="true"></i>&nbsp;     房務管理
                       </a>
-                      </li>
+                    </li>
 
                      <li>
                       <a href="#">

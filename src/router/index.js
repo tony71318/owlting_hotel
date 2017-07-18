@@ -5,6 +5,7 @@ import Home from '@/components/Home'
 import Checkout from '@/components/checkout'
 import Checkin from '@/components/checkin'
 import Sell from '@/components/Sell'
+import Empty from '@/components/Empty'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/sell',
       name: 'Sell',
       component: Sell
+    },
+    {
+      path: '/empty',
+      name: 'Empty',
+      component: Empty
     }
   ]
 })
