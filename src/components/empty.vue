@@ -66,22 +66,21 @@
          </div>
       </div>
 
-
       <div class="content">
 
-        <!-- <div class="detail">
+        <div class="detail">
           <h4>*查詢空房</h4>
           <div class="detail-white">
             <div class="form-group">
               <label class="col-md-4 control-label" for="textinput">請選擇日期</label>
               <div class="col-md-4">  
-                <datepicker placeholder="Select Date" :format="date_format" v-model="order.checkin_date"></datepicker>
+                <datepicker placeholder="Select Date" :format="date_format" v-model="search.empty_date"></datepicker>
               </div>  
             </div>
 
-            <button class="btn btn-primary"  v-on:click="send_order">確認送出</button>
+            <button class="btn btn-primary"  v-on:click="search_date">確認送出</button>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label class="col-md-4 control-label" for="textinput">訂房人姓名*</label>  
               <div class="col-md-4">
                 <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text"  v-model="order.name">
@@ -90,15 +89,11 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="textinput">聯絡電話</label>  
               <div class="col-md-4">
-                <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text"  v-model="order.phone">                  
+                <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text"  v-model="order.phone">
               </div>
-            </div>
-
-            
-            
-
+            </div>  -->           
           </div>
-        </div> -->
+        </div>
 
     <!--     <div class="room">
           <h4>*選擇欲入住之房間</h4>
@@ -137,34 +132,35 @@
 <script>
 
 // import toastr from 'toastr'
-// import Datepicker from 'vuejs-datepicker'
+import Datepicker from 'vuejs-datepicker'
 
-// export default {
-//   components: {
-//     Datepicker
-//   },
-//   name: 'sell',
-//   data () {
-//     return {
-//       date_format: 'yyyyMMdd',
-//       post_url: 'http://localhost:8000/ethereum/booking_contract/orders/post/',
-//       order: [],
-//       single_price: 1000,
-//       double_price: 2000,
-//       disable: true
-//     }
-//   },
-//   methods: {
-//     send_order: function () {
-//       var vm = this
-//       vm.$http.post(vm.post_url, {name: 'fuck'})
-//           .then((response) => {
-//             console.log(response.data + '!')
-//           })
-//       this.show = false
-//     }
-//   }
-// }
+export default {
+  components: {
+    Datepicker
+  },
+  name: 'sell',
+  data () {
+    return {
+      date_format: 'yyyyMMdd',
+      get_url: 'http://localhost:8000/ethereum/booking_contract/orders/order_id/',
+      search: [],
+      single_price: 1000,
+      double_price: 2000,
+      disable: true
+    }
+  },
+  methods: {
+    search_date: function () {
+      this.$http.get(this.get_url)
+          .then((response) => {
+            this.$set('gridData', response.data)
+          })
+          .catch(function (response) {
+            console.log(response)
+          })
+    }
+  }
+}
 
 </script>
 
