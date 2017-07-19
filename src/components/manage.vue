@@ -7,10 +7,47 @@
         <div class="detail">
           <h4>*訂單資料</h4>
           <div class="detail-white">
-            <button class="btn btn-primary"  v-on:click="search_date">列出全部</button>
-            <div v-for="item of Data">{{ item }}</div>      
+            <button class="btn btn-primary"  v-on:click="search_data">列出全部</button>
+
+            <table class="table table-condensed">
+              <tr>
+                <th>order_id</th>
+                <th>name</th>
+                <th>room_id</th>
+                <th>people</th>
+                <th>price</th>
+                <th>date</th>
+                <th>time</th>
+              </tr>
+              <tr v-for="r in Data">
+                <td>{{ r.order_id }}</td>
+                <td>{{ r.name }}</td>
+                <td>{{ r.room_id }}</td>
+                <td>{{ r.number_of_people }}</td>
+                <td>{{ r.price }}</td>
+                <td>{{ r.date }}</td>
+                <td>{{ r.time }}</td>
+              </tr>
+            </table>
+
+            <!-- <div class="pagination">
+              <ul>
+                <li v-bind:class="{'disabled': (currPage === 1)}" 
+                    @click.prevent="setPage(currPage-1)"><a href="#">Prev</a></li>
+                <li v-for="n in totalPage"
+                    v-bind:class="{'active': (currPage === (n+1))}" 
+                    @click.prevent="setPage(n+1)"><a href="#">{{n+1}}</a></li>
+                <li v-bind:class="{'disabled': (currPage === totalPage)}" 
+                    @click.prevent="setPage(currPage+1)"><a href="#">Next</a></li>
+              </ul>
+            </div>
+    
+            <div>Filter: <input type="text" v-model="filter_name"></div> -->
+
           </div>
         </div>
+
+
 
         <!-- <div class="detail">
           <h4>*搜尋訂單</h4>
@@ -53,7 +90,7 @@ export default {
     }
   },
   methods: {
-    search_date: function () {
+    search_data: function () {
       this.$http.get(this.get_url)
           .then((response) => {
             this.Data = response.data
