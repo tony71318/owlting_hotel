@@ -6,6 +6,7 @@ import Checkout from '@/components/checkout'
 import Checkin from '@/components/checkin'
 import Sell from '@/components/Sell'
 import Empty from '@/components/Empty'
+import Manage from '@/components/Manage'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/empty',
       name: 'Empty',
       component: Empty
+    },
+    {
+      path: '/manage',
+      name: 'Manage',
+      component: Manage
     }
   ]
 })
