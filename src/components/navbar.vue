@@ -35,23 +35,17 @@
                       <a href="#/empty"><i class="fa fa-gift" style="font-size:19px" aria-hidden="true"></i>&nbsp;     空房查詢</a>
                     </li>  
                     
-                    <li data-toggle="collapse" data-target="#new" class="collapsed">
-                      <a href="#"><i class="fa fa-address-card" style="font-size:19px" aria-hidden="true"></i>&nbsp;     訂單管理 <span class="arrow"></span></a>
+                    <li class="active">
+                      <a href="#/manage"><i class="fa fa-address-card" style="font-size:19px" aria-hidden="true"></i>&nbsp;     訂單管理</a>
                     </li>
-                    <ul class="sub-menu collapse" id="new">
-                      <li>New New 1</li>
-                      <li>New New 2</li>
-                      <li>New New 3</li>
-                    </ul>
-
-
-                     <li class="active">
+            
+                    <li class="active">
                       <a href="#">
                       <i class="fa fa-user-circle-o" style="font-size:19px" aria-hidden="true"></i>&nbsp;     房務管理
                       </a>
-                      </li>
+                    </li>
 
-                     <li class="active">
+                    <li class="active">
                       <a href="#">
                       <i class="fa fa-hotel" style="font-size:19px" aria-hidden="true"></i>&nbsp;     房務清潔
                       </a>
