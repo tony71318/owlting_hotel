@@ -16,6 +16,7 @@
             </div>
 
             <button class="btn btn-primary"  v-on:click="search_date">點擊查詢</button>
+            <div v-for="item of Data">{{ item }}</div>
 
             <!-- <div class="form-group">
               <label class="col-md-4 control-label" for="textinput">訂房人姓名*</label>  
@@ -84,6 +85,7 @@ export default {
       date_format: 'yyyyMMdd',
       get_url: 'http://localhost:8000/ethereum/booking_contract/orders/order_id/',
       search: [],
+      Data: [],
       single_price: 1000,
       double_price: 2000,
       disable: true
@@ -93,7 +95,7 @@ export default {
     search_date: function () {
       this.$http.get(this.get_url)
           .then((response) => {
-            this.$set('gridData', response.data)
+            this.Data = response.data
           })
           .catch(function (response) {
             console.log(response)
