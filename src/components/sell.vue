@@ -8,27 +8,27 @@
         <div class="detail">
           <h4>*填寫訂房資訊</h4>
           <div class="detail-white">
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="textinput">訂房人姓名*</label>  
-              <div class="col-md-4">
-                <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text"  v-model="order.name">
+            <div class="form-group row">
+              <label class="col-md-2 control-label" for="textinput">訂房人姓名(暫時改為帳戶）*</label>  
+              <div class="col-md-8">
+                <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text"  v-model="order.user_id">
               </div>
             </div>
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="textinput">聯絡電話</label>  
-              <div class="col-md-4">
+            <div class="form-group row">
+              <label class="col-md-2 control-label" for="textinput">聯絡電話</label>  
+              <div class="col-md-8">
                 <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text"  v-model="order.phone">                  
               </div>
             </div>
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="textinput">入住日期</label>
-              <div class="col-md-4">  
+            <div class="form-group row">
+              <label class="col-md-2 control-label" for="textinput">入住日期</label>
+              <div class="col-md-8">  
                 <datepicker placeholder="Select Date" :format="date_format" v-model="order.checkin_date"></datepicker>
               </div>  
             </div>
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="textinput">退房日期</label>
-              <div class="col-md-4">  
+            <div class="form-group row ">
+              <label class="col-md-2 control-label" for="textinput">退房日期</label>
+              <div class="col-md-8">  
                 <datepicker placeholder="Select Date" :format="date_format" :disabled-picker="disable" v-model="order.checkout_date"></datepicker>
               </div>  
             </div>
@@ -96,7 +96,7 @@ export default {
   methods: {
     send_order: function () {
       var postdata = {
-        'name': this.order.name,
+        'user_id': this.order.user_id,
         'room_id': this.room_id[0],
         'checkin_date': this.order.checkin_date.toLocaleDateString()
       }
