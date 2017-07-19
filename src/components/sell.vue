@@ -1,73 +1,70 @@
 <template>
-    <div class="sell">
+  <div class="sell">
+    <navbar></navbar>
 
-      <navbar></navbar>
-
-      <div class="content">
-
-        <div class="detail">
-          <h4>*填寫訂房資訊</h4>
-          <div class="detail-white">
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="textinput">訂房人姓名*</label>  
-              <div class="col-md-4">
-                <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text"  v-model="order.name">
-              </div>
+    <div class="content">
+      <div class="detail">
+        <h4>*填寫訂房資訊</h4>
+        <div class="detail-white">
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">訂房人姓名*</label>  
+            <div class="col-md-4">
+              <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text"  v-model="order.name">
             </div>
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="textinput">聯絡電話</label>  
-              <div class="col-md-4">
-                <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text"  v-model="order.phone">                  
-              </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">聯絡電話</label>  
+            <div class="col-md-4">
+              <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text"  v-model="order.phone">                  
             </div>
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="textinput">入住日期</label>
-              <div class="col-md-4">  
-                <datepicker placeholder="Select Date" :format="date_format" v-model="order.checkin_date"></datepicker>
-              </div>  
-            </div>
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="textinput">退房日期</label>
-              <div class="col-md-4">  
-                <datepicker placeholder="Select Date" :format="date_format" :disabled-picker="disable" v-model="order.checkout_date"></datepicker>
-              </div>  
-            </div>
-
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">入住日期</label>
+            <div class="col-md-4">  
+              <datepicker placeholder="Select Date" :format="date_format" v-model="order.checkin_date"></datepicker>
+            </div>  
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">退房日期</label>
+            <div class="col-md-4">  
+              <datepicker placeholder="Select Date" :format="date_format" :disabled-picker="disable" v-model="order.checkout_date"></datepicker>
+            </div>  
           </div>
         </div>
-
-        <div class="room">
-          <h4>*選擇欲入住之房間</h4>
-          <div class="room-white">
-            <div class="form-group">
-              <h5 class="pull-right">{{single_price}}元</h5>
-              <label class="col-md-4 control-label" for="textinput">單人房</label>  
-              <div class="col-md-4">
-                <label class="checkbox-inline"><input type="checkbox" value="101" v-model="room_id">101</label>
-                <label class="checkbox-inline"><input type="checkbox" value="102" v-model="room_id">102</label>
-                <label class="checkbox-inline"><input type="checkbox" value="103" v-model="room_id">103</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="room-white">
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="textinput">雙人房</label>
-              <h5 class="pull-right">{{double_price}}元</h5>  
-              <div class="col-md-4">
-                <label class="checkbox-inline"><input type="checkbox" value="201" v-model="room_id">201</label>
-                <label class="checkbox-inline"><input type="checkbox" value="202" v-model="room_id">202</label>
-                <label class="checkbox-inline"><input type="checkbox" value="203" v-model="room_id">203</label>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button class="btn btn-primary"  v-on:click="send_order">送出訂單</button>
       </div>
+
+      <div class="room">
+        <h4>*選擇欲入住之房間</h4>
+        <div class="room-white">
+          <div class="form-group">
+            <h5 class="pull-right">{{single_price}}元</h5>
+            <label class="col-md-4 control-label" for="textinput">單人房</label>  
+            <div class="col-md-4">
+              <label class="checkbox-inline"><input type="checkbox" value="101" v-model="room_id">101</label>
+              <label class="checkbox-inline"><input type="checkbox" value="102" v-model="room_id">102</label>
+              <label class="checkbox-inline"><input type="checkbox" value="103" v-model="room_id">103</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="room-white">
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">雙人房</label>
+            <h5 class="pull-right">{{double_price}}元</h5>  
+            <div class="col-md-4">
+              <label class="checkbox-inline"><input type="checkbox" value="201" v-model="room_id">201</label>
+              <label class="checkbox-inline"><input type="checkbox" value="202" v-model="room_id">202</label>
+              <label class="checkbox-inline"><input type="checkbox" value="203" v-model="room_id">203</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary"  v-on:click="send_order">送出訂單</button>
+    </div>
       
 
-    </div>
+  </div>
 </template>
 
 <script>
