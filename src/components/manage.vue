@@ -7,8 +7,9 @@
         <div class="detail">
           <h4>*訂單資料</h4>
           <div class="detail-white">
+          <br>
             <button class="btn btn-primary"  v-on:click="search_data">列出全部</button>
-
+            <br>
             <table class="table table-condensed">
               <tr>
                 <th>order_id</th>
@@ -29,20 +30,6 @@
                 <td>{{ r.time }}</td>
               </tr>
             </table>
-
-            <!-- <div class="pagination">
-              <ul>
-                <li v-bind:class="{'disabled': (currPage === 1)}" 
-                    @click.prevent="setPage(currPage-1)"><a href="#">Prev</a></li>
-                <li v-for="n in totalPage"
-                    v-bind:class="{'active': (currPage === (n+1))}" 
-                    @click.prevent="setPage(n+1)"><a href="#">{{n+1}}</a></li>
-                <li v-bind:class="{'disabled': (currPage === totalPage)}" 
-                    @click.prevent="setPage(currPage+1)"><a href="#">Next</a></li>
-              </ul>
-            </div>
-    
-            <div>Filter: <input type="text" v-model="filter_name"></div> -->
 
           </div>
         </div>
@@ -71,6 +58,7 @@ import Navbar from './navbar'
 
 // import toastr from 'toastr'
 import Datepicker from 'vuejs-datepicker'
+// var $ = window.jQuery = require('../../node_modules/jquery')
 
 export default {
   components: {

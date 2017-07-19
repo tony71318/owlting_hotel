@@ -14,8 +14,9 @@ module.exports = {
         new webpack.ProvidePlugin({
             // Automatically loads modules
             $: 'jquery',
-            jQuery: 'jquery',
+            jquery: 'jquery',
             'window.jQuery': 'jquery', 
+            jQuery: 'jquery',
             Tether: 'tether',
         })
     ],
