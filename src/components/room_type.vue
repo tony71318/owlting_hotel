@@ -5,38 +5,23 @@
     <div class="content">
       <div class="row">
         <div class="detail">
-          <h4>*訂單資料</h4>
+          <h4>*房型資料</h4>
           <button class="btn-sm btn-warning pull-right"  v-on:click="list_order()">重新整理</button>
           <div class="detail-white">
             <table class="table table-condensed" v-if="Data.length > 0">
               <tr>
                 <th></th> 
-                <th>order_id</th>
                 <th>name</th>
-                <th>room_type</th>
-                <th>room_id</th>
-                <th>start_date</th>
-                <th>duration</th>
-                <th>paid</th>
+                <th>total_room</th>
                 <th></th>
               </tr>
               <tr v-for="(data, index) in Data">
                 <td>{{ index+1 }}</td>
-                <td>{{ data.fields.order_id }}</td>
                 <td>{{ data.fields.name }}</td>
-                <td>{{ data.fields.room_id[0] }}</td>
-                <td>{{ data.fields.room_id }}</td>
-                <td>{{ data.fields.start_date }}</td>
-                <td>{{ data.fields.duration }}</td>
-                <td>{{ data.fields.paid }}</td>
-                <td>
-                  <button class="btn-sm btn-primary"  v-on:click="get_update_data(data)">更新訂單</button>
-                </td>
-                <td>
-                  <click-confirm placement="right">
-                    <button class="btn-sm btn-danger"  v-on:click="delete_order(data)">刪除訂單</button>
-                  </click-confirm>
-                </td>
+                <td>{{ data.fields.total_room }}</td>
+
+                <td><button class="btn-sm btn-primary"  v-on:click="get_update_data(data)">更新房型</button></td>
+                <td><button class="btn-sm btn-danger"  v-on:click="delete_order(data)">刪除房型</button></td>
               </tr>
             </table>
 
@@ -46,43 +31,48 @@
 
       <div class="row">
         <div class="detail">
-          <h4>*更新訂單</h4>
+          <h4>*更新房型</h4>
           <div class="detail-white">
             <table class="table table-condensed">
               <tr>
-                <th>order_id</th>
                 <th>name</th>
-                <th>room_type</th>
-                <th>room_id</th>
-                <th>start_date</th>
-                <th>duration</th>
-                <th>paid</th>
+                <th>total_room</th>
               </tr>
               <tr v-if="update_data !== null">
-                <td>
-                  {{ update_data.fields.order_id }}
-                </td>
                 <td>
                   {{ update_data.fields.name }}
                 </td>
                 <td>
-                  {{ update_data.fields.room_id[0] }}
-                </td>
-                <td>
-                  <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-sm" type="text"  v-model="update_data.fields.room_id">
-                </td>
-                <td>
-                  <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-sm" type="text"  v-model="update_data.fields.start_date">
-                </td>
-                <td>
-                  {{ update_data.fields.duration }}
-                </td>
-                <td>
-                  <input type="checkbox" value="203" v-model="update_data.fields.paid">
+                  <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-sm" type="text"  v-model="update_data.fields.total_room">
                 </td>
               </tr>
             </table>
-            <button class="btn btn-primary"  v-on:click="update_order()" v-if="update_data !== null">更新訂單</button>
+            <button class="btn btn-primary"  v-on:click="update_order()" v-if="update_data !== null">更新房型</button>
+            <div> {{ response }} </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="detail">
+          <h4>*新增房型</h4>
+          <div class="detail-white">
+            <table class="table table-condensed">
+              <tr>
+                <th>name</th>
+                <th>total_room</th>
+              </tr>
+              <tr>
+                <td>
+                  <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-sm" type="text"  v-model="post_data.name">
+                </td>
+                <td>
+                  <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-sm" type="text"  v-model="post_data.total_room">
+                </td>
+              </tr>
+            </table>
+            <button class="btn btn-primary"  v-on:click="update_order()" v-if="update_data !== null">新增房型</button>
             <div> {{ response }} </div>
 
           </div>
@@ -97,22 +87,24 @@
 
 import Navbar from './navbar'
 
-import toastr from 'toastr'
+// import toastr from 'toastr'
 import Datepicker from 'vuejs-datepicker'
+// var $ = window.jQuery = require('../../node_modules/jquery')
 
 export default {
   components: {
     Datepicker,
     Navbar
   },
-  name: 'manage',
+  name: 'room_type',
   data () {
     return {
       date_format: 'yyyyMMdd',
-      get_url: 'http://localhost:8000/ethereum/booking_contract/orders/list_all/',
+      get_url: 'http://localhost:8000/ethereum/booking_contract/orders/list_all_room/',
       update_url: 'http://localhost:8000/ethereum/booking_contract/orders/update/',
       delete_url: 'http://localhost:8000/ethereum/booking_contract/orders/delete/',
       Data: [],
+      post_data: [],
       update_data: null,
       response: null,
       old_key: null
@@ -123,7 +115,6 @@ export default {
       this.$http.get(this.get_url)
           .then((response) => {
             this.Data = response.data
-            toastr.success('目前有' + this.Data.length + '筆訂單', '已載入最新資料')
             console.log(response.data)
           })
           .catch(function (response) {
@@ -131,7 +122,6 @@ export default {
           })
     },
     get_update_data: function (data) {
-      toastr.info('請在下方填寫更新資料')
       this.update_data = data
       this.old_key = data.fields.order_id + data.fields.start_date
     },
@@ -162,7 +152,6 @@ export default {
       this.$http.post(this.delete_url, deleteData)
           .then((response) => {
             console.log(response.bodyText + '!')
-            this.list_order()
             this.response = response
           })
       this.show = false

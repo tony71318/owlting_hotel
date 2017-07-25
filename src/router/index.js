@@ -7,6 +7,7 @@ import Checkin from '@/components/checkin'
 import Sell from '@/components/Sell'
 import Empty from '@/components/Empty'
 import Manage from '@/components/Manage'
+import roomType from '@/components/room_type'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/manage',
       name: 'Manage',
       component: Manage
+    },
+    {
+      path: '/room_type',
+      name: 'room_type',
+      component: roomType
     }
   ]
 })

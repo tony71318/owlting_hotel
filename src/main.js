@@ -17,6 +17,11 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource)
 Vue.http.options.emulateJSON = true
 
+// clickconfirm
+import ClickConfirm from 'click-confirm'
+
+Vue.component('clickConfirm', ClickConfirm)
+
 // setup
 toastrSetup()
 

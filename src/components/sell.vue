@@ -21,7 +21,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-2 control-label" for="textinput">入住日期</label>
+              <label class="col-md-2 control-label" for="textinput">入住日期 *</label>
               <div class="col-md-8">  
                 <datepicker placeholder="Select Date" :format="date_format" v-model="order.checkin_date"></datepicker>
               </div>  
@@ -64,6 +64,7 @@
         </div>
 
         <button class="btn btn-primary"  v-on:click="send_order">送出訂單</button>
+        <div> {{ response }} </div>
       </div>
       
 
@@ -84,13 +85,14 @@ export default {
   name: 'sell',
   data () {
     return {
-      date_format: 'yyyyMMdd',
+      date_format: 'yyyy-MM-dd',
       post_url: 'http://localhost:8000/ethereum/booking_contract/orders/post/',
       order: [],
       room_id: [],
       single_price: 1000,
       double_price: 2000,
-      disable: true
+      disable: true,
+      response: null
     }
   },
   methods: {
@@ -98,12 +100,13 @@ export default {
       var postdata = {
         'user_id': this.order.user_id,
         'room_id': this.room_id[0],
-        'checkin_date': this.order.checkin_date.toLocaleDateString()
+        'checkin_date': this.order.checkin_date.toISOString().substring(0, 10)
       }
       console.log(postdata.checkin_date)
       this.$http.post(this.post_url, postdata)
           .then((response) => {
             console.log(response.data + '!')
+            this.response = response
           })
       this.show = false
     }
