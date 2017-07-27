@@ -17,10 +17,9 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource)
 Vue.http.options.emulateJSON = true
 
-// clickconfirm
-import ClickConfirm from 'click-confirm'
-
-Vue.component('clickConfirm', ClickConfirm)
+// VueSweetAlert
+import VueSweetAlert from 'vue-sweetalert'
+Vue.use(VueSweetAlert)
 
 // setup
 toastrSetup()

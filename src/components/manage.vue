@@ -33,9 +33,7 @@
                   <button class="btn-sm btn-primary"  v-on:click="get_update_data(data)">更新訂單</button>
                 </td>
                 <td>
-                  <click-confirm placement="right">
-                    <button class="btn-sm btn-danger"  v-on:click="delete_order(data)">刪除訂單</button>
-                  </click-confirm>
+                  <button class="btn-sm btn-danger"  v-on:click="delete_confirm(data)">刪除訂單</button>
                 </td>
               </tr>
             </table>
@@ -164,6 +162,34 @@ export default {
             this.response = response
           })
       this.show = false
+    },
+    delete_confirm: function (data) {
+      var _this = this
+      this.$swal({
+        title: '確定要刪除嗎？',
+        text: '即將刪除訂單： ' + data.fields.order_id,
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '快給我刪除！！！',
+        cancelButtonText: '我後悔了ＱＱ'
+      }).then(function () {
+        _this.delete_order(data)
+
+        _this.$swal(
+          '哈哈，刪除了!',
+          '訂單編號： ' + data.fields.order_id + ' 被刪除了',
+          'success'
+        )
+      }, function (dismiss) {
+        // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+        if (dismiss === 'cancel') {
+          _this.$swal(
+            '取消了',
+            '放心，訂單還在 :)',
+            'error'
+          )
+        }
+      })
     }
   },
   mounted () {
