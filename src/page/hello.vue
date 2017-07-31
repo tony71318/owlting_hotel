@@ -30,7 +30,7 @@
       <!-- Secondary, outline button -->
       <button type="button" class="btn btn-warning" @click="hideToastr">Hide Toastr</button>
 
-      <router-link to="/home">Go to Home</router-link>
+      <router-link to="/counter">Go to Counter</router-link>
     </div>
   </div>
 </template>

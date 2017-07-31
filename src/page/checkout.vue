@@ -1,68 +1,8 @@
 <template>
   <div class="out"> 
-    <div class="nav-side-menu">
-      <div class="brand">奧丁丁旅館</div>
-      <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-    
-      <div class="menu-list">
-        <ul id="menu-content" class="menu-content collapse out">
-            <li class="active">
-              <a href="#/home">
-              <i class="fa fa-home" style="font-size:19px"></i> 櫃檯接待
-              </a>
-            </li>
 
-            <li  data-toggle="collapse" data-target="#products" class="collapsed">
-              <a href="#"><i class="fa fa-address-book-o" style="font-size:17px"></i> 房號安排 <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="products">
-                <li><a href="#">CSS3 Animation</a></li>
-                <li><a href="#">General</a></li>
-                <li><a href="#">Buttons</a></li>
-                <li><a href="#">Tabs & Accordions</a></li>
-                <li><a href="#">Typography</a></li>
-                <li><a href="#">FontAwesome</a></li>
-                <li><a href="#">Slider</a></li>
-                <li><a href="#">Panels</a></li>
-                <li><a href="#">Widgets</a></li>
-                <li><a href="#">Bootstrap Model</a></li>
-            </ul>
+    <navbar></navbar>
 
-
-            <li data-toggle="collapse" data-target="#service" class="collapsed">
-              <a href="#"><i class="fa fa-gift" style="font-size:20px"></i> 空房查詢 <span class="arrow"></span></a>
-            </li>  
-            <ul class="sub-menu collapse" id="service">
-              <li>New Service 1</li>
-              <li>New Service 2</li>
-              <li>New Service 3</li>
-            </ul>
-
-
-            <li data-toggle="collapse" data-target="#new" class="collapsed">
-              <a href="#"><i class="fa fa-address-card" style="font-size:17px"></i> 訂單管理 <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="new">
-              <li>New New 1</li>
-              <li>New New 2</li>
-              <li>New New 3</li>
-            </ul>
-
-
-             <li>
-              <a href="#">
-              <i class="fa fa-user-circle-o" style="font-size:17px"></i> 房務管理
-              </a>
-              </li>
-
-             <li>
-              <a href="#">
-              <i class="fa fa-hotel" style="font-size:17px"></i> 房務清潔
-              </a>
-            </li>
-        </ul>
-      </div>
-    </div>
     <div class="content">
       <div class="row">
       </div>
@@ -73,10 +13,13 @@
 
 <script>
 
-// import toastr from 'toastr'
+import Navbar from '../components/navbar'
 
 export default {
   name: 'checkout',
+  components: {
+    Navbar
+  },
   data () {
     return {
       // msg: 'Welcome to Home Page'

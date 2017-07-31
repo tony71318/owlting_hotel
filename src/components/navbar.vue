@@ -9,7 +9,7 @@
       
                 <ul id="menu-content" class="menu-content collapse out">
                     <li class="active">
-                      <a href="#/home">
+                      <a href="#/counter">
                       <i class="fa fa-home" style="font-size:19px" aria-hidden="true"></i>&nbsp;     櫃檯接待
                       </a>
                     </li>

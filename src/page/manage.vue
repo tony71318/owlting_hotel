@@ -6,7 +6,7 @@
       <div class="row">
         <div class="detail">
           <h4>*訂單資料</h4>
-          <button class="btn-sm btn-warning pull-right"  v-on:click="list_order()">重新整理</button>
+          <button class="btn-sm btn-warning pull-right"  v-on:click="list_order()" v-if="Data.length > 0">重新整理</button>
           <div class="detail-white">
             <table class="table table-condensed" v-if="Data.length > 0">
               <tr>
@@ -91,7 +91,7 @@
 
 <script>
 
-import Navbar from './navbar'
+import Navbar from '../components/navbar'
 
 import toastr from 'toastr'
 import Datepicker from 'vuejs-datepicker'

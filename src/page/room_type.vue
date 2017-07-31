@@ -85,7 +85,7 @@
 
 <script>
 
-import Navbar from './navbar'
+import Navbar from '../components/navbar'
 
 // import toastr from 'toastr'
 import Datepicker from 'vuejs-datepicker'

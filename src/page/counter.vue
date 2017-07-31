@@ -1,41 +1,11 @@
 <template>
-    <div class="home">
+    <div class="counter">
       
       <navbar></navbar>
 
       <div class="content">
         
-        <div class="row">
-          
-          <div class="col-sm-4">
-            <div class="card room-top">
-              <div class="card-block">
-                <h3 class="card-title">退房進度</h3>
-                <p class="card-text">尚有 2 間未退房</p>
-                <a href="#/checkout" class="btn btn-primary">辦理退房</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="card room-top">
-              <div class="card-block">
-                <h3 class="card-title">預約入住</h3>
-                <p class="card-text">尚有 2 間未入住</p>
-                <a href="#/checkin" class="btn btn-primary">辦理入住</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="card room-top">
-              <div class="card-block">
-                <h3 class="card-title">今日空房</h3>
-                <p class="card-text">尚有 12 間空房</p>
-                <a href="#/sell" class="btn btn-primary">現場銷售</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <contentTop></contentTop>
 
         <div class="row">
 
@@ -109,12 +79,14 @@
 
 <script>
 
-import Navbar from './navbar'
+import Navbar from '../components/navbar'
+import ContentTop from '../components/counter/content_top'
 
 export default {
-  name: 'home',
+  name: 'counter',
   components: {
-    Navbar
+    Navbar,
+    ContentTop
   },
   data () {
     return {
@@ -132,10 +104,6 @@ export default {
   
   /*right side*/
 
-  .room-top{
-    margin-bottom: 20px;
-  }
-
   .room{
     margin-bottom: 20px;
   }
@@ -146,6 +114,7 @@ export default {
     width: 85%;
     position: fixed;
     padding: 20px;
+    overflow-y: scroll;
   }
 
   /*right side*/
