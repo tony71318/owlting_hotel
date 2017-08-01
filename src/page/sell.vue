@@ -4,6 +4,8 @@
 
       <div class="content">
 
+        <circleLoading class="loading" v-show="loading"></circleLoading>
+
         <div class="detail">
           <h4>*填寫訂房資訊</h4>
           <div class="detail-white">
@@ -73,26 +75,31 @@
 import Datepicker from 'vuejs-datepicker'
 import Navbar from '../components/navbar'
 
+import circleLoading from 'vue-loading-spinner/src/components/Circle.vue'
+
 export default {
   components: {
     Datepicker,
-    Navbar
+    Navbar,
+    circleLoading
   },
   name: 'sell',
   data () {
     return {
       date_format: 'yyyy-MM-dd',
-      post_url: 'http://localhost:8000/ethereum/booking_contract/orders/post/',
+      post_url: 'http://localhost:8070/post/order',
       order: [],
       room_id: [],
       single_price: 1000,
       double_price: 2000,
       disable: true,
-      response: null
+      response: null,
+      loading: false
     }
   },
   methods: {
     send_order: function () {
+      this.loading = true
       var postdata = {
         'user_id': this.order.user_id,
         'room_id': this.room_id[0],
@@ -103,6 +110,7 @@ export default {
           .then((response) => {
             console.log(response.data + '!')
             this.response = response
+            this.loading = false
           })
       this.show = false
     }
@@ -114,6 +122,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   
+  .loading{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: transformX(-50%);
+    margin-left: transformY(-50%);
+    z-index: 1001;
+  }
+
   /*right side*/
   .radio-inline,
   .checkbox-inline{

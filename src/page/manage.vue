@@ -22,13 +22,13 @@
               </tr>
               <tr v-for="(data, index) in Data">
                 <td>{{ index+1 }}</td>
-                <td>{{ data.fields.order_id }}</td>
-                <td>{{ data.fields.name }}</td>
-                <td>{{ data.fields.room_id[0] }}</td>
-                <td>{{ data.fields.room_id }}</td>
-                <td>{{ data.fields.start_date }}</td>
-                <td>{{ data.fields.duration }}</td>
-                <td>{{ data.fields.paid }}</td>
+                <td>{{ data.order_id }}</td>
+                <td>{{ data.name }}</td>
+                <td>{{ data.room_id[0] }}</td>
+                <td>{{ data.room_id }}</td>
+                <td>{{ data.start_date }}</td>
+                <td>{{ data.duration }}</td>
+                <td>{{ data.paid }}</td>
                 <td>
                   <button class="btn-sm btn-primary"  v-on:click="get_update_data(data)">更新訂單</button>
                 </td>
@@ -57,25 +57,25 @@
               </tr>
               <tr v-if="update_data !== null">
                 <td>
-                  {{ update_data.fields.order_id }}
+                  {{ update_data.order_id }}
                 </td>
                 <td>
-                  {{ update_data.fields.name }}
+                  {{ update_data.name }}
                 </td>
                 <td>
-                  {{ update_data.fields.room_id[0] }}
+                  {{ update_data.room_id[0] }}
                 </td>
                 <td>
-                  <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-sm" type="text"  v-model="update_data.fields.room_id">
+                  <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-sm" type="text"  v-model="update_data.room_id">
                 </td>
                 <td>
-                  <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-sm" type="text"  v-model="update_data.fields.start_date">
+                  <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-sm" type="text"  v-model="update_data.start_date">
                 </td>
                 <td>
-                  {{ update_data.fields.duration }}
+                  {{ update_data.duration }}
                 </td>
                 <td>
-                  <input type="checkbox" value="203" v-model="update_data.fields.paid">
+                  <input type="checkbox" value="203" v-model="update_data.paid">
                 </td>
               </tr>
             </table>
@@ -105,9 +105,9 @@ export default {
   data () {
     return {
       date_format: 'yyyyMMdd',
-      get_url: 'http://localhost:8000/ethereum/booking_contract/orders/list_all/',
-      update_url: 'http://localhost:8000/ethereum/booking_contract/orders/update/',
-      delete_url: 'http://localhost:8000/ethereum/booking_contract/orders/delete/',
+      get_url: 'http://localhost:8070/get/all_order',
+      update_url: 'http://localhost:8070/update/order',
+      delete_url: 'http://localhost:8070/delete/order',
       Data: [],
       update_data: null,
       response: null,
@@ -129,15 +129,15 @@ export default {
     get_update_data: function (data) {
       toastr.info('請在下方填寫更新資料')
       this.update_data = data
-      this.old_key = data.fields.order_id + data.fields.start_date
+      this.old_key = data.order_id + data.start_date
     },
     update_order: function () {
       var updateData = {
         'old_key': this.old_key,
-        'order_id': this.update_data.fields.order_id,
-        'user_id': this.update_data.fields.name,
-        'room_id': this.update_data.fields.room_id,
-        'checkin_date': this.update_data.fields.start_date
+        'order_id': this.update_data.order_id,
+        'user_id': this.update_data.name,
+        'room_id': this.update_data.room_id,
+        'checkin_date': this.update_data.start_date
       }
       this.response = updateData
 
@@ -150,8 +150,8 @@ export default {
     },
     delete_order: function (data) {
       var deleteData = {
-        'order_id': data.fields.order_id,
-        'checkin_date': data.fields.start_date
+        'order_id': data.order_id,
+        'checkin_date': data.start_date
       }
       this.response = deleteData
 
@@ -167,7 +167,7 @@ export default {
       var _this = this
       this.$swal({
         title: '確定要刪除嗎？',
-        text: '即將刪除訂單： ' + data.fields.order_id,
+        text: '即將刪除訂單： ' + data.order_id,
         type: 'warning',
         showCancelButton: true,
         confirmButtonText: '快給我刪除！！！',
@@ -177,7 +177,7 @@ export default {
 
         _this.$swal(
           '哈哈，刪除了!',
-          '訂單編號： ' + data.fields.order_id + ' 被刪除了',
+          '訂單編號： ' + data.order_id + ' 被刪除了',
           'success'
         )
       }, function (dismiss) {
