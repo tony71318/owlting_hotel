@@ -17,8 +17,8 @@
               </tr>
               <tr v-for="(data, index) in Data">
                 <td>{{ index+1 }}</td>
-                <td>{{ data.fields.name }}</td>
-                <td>{{ data.fields.total_room }}</td>
+                <td>{{ data.name }}</td>
+                <td>{{ data.total_room }}</td>
 
                 <td><button class="btn-sm btn-primary"  v-on:click="get_update_data(data)">更新房型</button></td>
                 <td><button class="btn-sm btn-danger"  v-on:click="delete_order(data)">刪除房型</button></td>
@@ -40,10 +40,10 @@
               </tr>
               <tr v-if="update_data !== null">
                 <td>
-                  {{ update_data.fields.name }}
+                  {{ update_data.name }}
                 </td>
                 <td>
-                  <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-sm" type="text"  v-model="update_data.fields.total_room">
+                  <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-sm" type="text"  v-model="update_data.total_room">
                 </td>
               </tr>
             </table>
@@ -100,7 +100,7 @@ export default {
   data () {
     return {
       date_format: 'yyyyMMdd',
-      get_url: 'http://localhost:8000/ethereum/booking_contract/orders/list_all_room/',
+      get_url: 'http://localhost:8070/get/all_room',
       update_url: 'http://localhost:8000/ethereum/booking_contract/orders/update/',
       delete_url: 'http://localhost:8000/ethereum/booking_contract/orders/delete/',
       Data: [],
@@ -123,15 +123,15 @@ export default {
     },
     get_update_data: function (data) {
       this.update_data = data
-      this.old_key = data.fields.order_id + data.fields.start_date
+      this.old_key = data.order_id + data.start_date
     },
     update_order: function () {
       var updateData = {
         'old_key': this.old_key,
-        'order_id': this.update_data.fields.order_id,
-        'user_id': this.update_data.fields.name,
-        'room_id': this.update_data.fields.room_id,
-        'checkin_date': this.update_data.fields.start_date
+        'order_id': this.update_data.order_id,
+        'user_id': this.update_data.name,
+        'room_id': this.update_data.room_id,
+        'checkin_date': this.update_data.start_date
       }
       this.response = updateData
 
@@ -144,8 +144,8 @@ export default {
     },
     delete_order: function (data) {
       var deleteData = {
-        'order_id': data.fields.order_id,
-        'checkin_date': data.fields.start_date
+        'order_id': data.order_id,
+        'checkin_date': data.start_date
       }
       this.response = deleteData
 
