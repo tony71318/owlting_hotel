@@ -71,7 +71,7 @@
 
 <script>
 
-// import toastr from 'toastr'
+import toastr from 'toastr'
 import Datepicker from 'vuejs-datepicker'
 import Navbar from '../components/navbar'
 
@@ -99,6 +99,7 @@ export default {
   },
   methods: {
     send_order: function () {
+      toastr.warning('新增訂單中...')
       this.loading = true
       var postdata = {
         'user_id': this.order.user_id,
@@ -163,6 +164,7 @@ export default {
     position: fixed;
     padding: 40px;
     background-color: #edf0f5;
+    overflow-y: scroll;
   }
 
   /*right side*/

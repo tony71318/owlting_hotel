@@ -3,6 +3,9 @@
     <navbar></navbar> 
  
     <div class="content">
+
+      <circleLoading class="loading" v-show="loading"></circleLoading>
+
       <div class="row">
         <div class="detail">
           <h4>*訂單資料</h4>
@@ -41,7 +44,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" v-if="update_data !== null">
         <div class="detail">
           <h4>*更新訂單</h4>
           <div class="detail-white">
@@ -55,7 +58,7 @@
                 <th>duration</th>
                 <th>paid</th>
               </tr>
-              <tr v-if="update_data !== null">
+              <tr>
                 <td>
                   {{ update_data.order_id }}
                 </td>
@@ -96,10 +99,13 @@ import Navbar from '../components/navbar'
 import toastr from 'toastr'
 import Datepicker from 'vuejs-datepicker'
 
+import circleLoading from 'vue-loading-spinner/src/components/Circle.vue'
+
 export default {
   components: {
     Datepicker,
-    Navbar
+    Navbar,
+    circleLoading
   },
   name: 'manage',
   data () {
@@ -111,7 +117,8 @@ export default {
       Data: [],
       update_data: null,
       response: null,
-      old_key: null
+      old_key: null,
+      loading: false
     }
   },
   methods: {
@@ -132,6 +139,9 @@ export default {
       this.old_key = data.order_id + data.start_date
     },
     update_order: function () {
+      toastr.warning('更新訂單中...')
+      this.change_loading_state()
+
       var updateData = {
         'old_key': this.old_key,
         'order_id': this.update_data.order_id,
@@ -145,10 +155,15 @@ export default {
           .then((response) => {
             console.log(response.bodyText + '!')
             this.response = response
+
+            this.change_loading_state()
           })
       this.show = false
     },
     delete_order: function (data) {
+      toastr.warning('刪除訂單中...')
+      this.change_loading_state()
+
       var deleteData = {
         'order_id': data.order_id,
         'checkin_date': data.start_date
@@ -160,6 +175,8 @@ export default {
             console.log(response.bodyText + '!')
             this.list_order()
             this.response = response
+
+            this.change_loading_state()
           })
       this.show = false
     },
@@ -190,6 +207,9 @@ export default {
           )
         }
       })
+    },
+    change_loading_state: function () {
+      this.loading = !this.loading
     }
   },
   mounted () {
@@ -201,6 +221,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+  .loading{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: transformX(-50%);
+    margin-left: transformY(-50%);
+    z-index: 1001;
+  }
   
   /*right side*/
   .radio-inline,
@@ -235,6 +264,7 @@ export default {
     overflow-y: scroll;
     padding: 40px;
     background-color: #edf0f5;
+    overflow-y: scroll;
   }
 
   /*right side*/
