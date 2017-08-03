@@ -43,9 +43,9 @@
             <h5 class="pull-right">{{single_price}}元</h5>
             <label class="col-md-4 control-label" for="textinput">單人房</label>  
             <div class="col-md-4">
-              <label class="checkbox-inline"><input type="checkbox" value="101" v-model="room_id">101</label>
-              <label class="checkbox-inline"><input type="checkbox" value="102" v-model="room_id">102</label>
-              <label class="checkbox-inline"><input type="checkbox" value="103" v-model="room_id">103</label>
+              <label class="checkbox-inline"><input type="radio" value="101" v-model="room_id">101</label>
+              <label class="checkbox-inline"><input type="radio" value="102" v-model="room_id">102</label>
+              <label class="checkbox-inline"><input type="radio" value="103" v-model="room_id">103</label>
             </div>
           </div>
         </div>
@@ -55,9 +55,9 @@
             <label class="col-md-4 control-label" for="textinput">雙人房</label>
             <h5 class="pull-right">{{double_price}}元</h5>  
             <div class="col-md-4">
-              <label class="checkbox-inline"><input type="checkbox" value="201" v-model="room_id">201</label>
-              <label class="checkbox-inline"><input type="checkbox" value="202" v-model="room_id">202</label>
-              <label class="checkbox-inline"><input type="checkbox" value="203" v-model="room_id">203</label>
+              <label class="checkbox-inline"><input type="radio" value="201" v-model="room_id">201</label>
+              <label class="checkbox-inline"><input type="radio" value="202" v-model="room_id">202</label>
+              <label class="checkbox-inline"><input type="radio" value="203" v-model="room_id">203</label>
             </div>
           </div>
         </div>
