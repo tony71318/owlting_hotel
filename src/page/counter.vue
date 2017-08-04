@@ -91,9 +91,20 @@ export default {
   data () {
     return {
       // msg: 'Welcome to Home Page'
+      modal: {
+        title: 'I am modal title',
+        visible: true,
+        text: ''
+      }
     }
   },
   methods: {
+    onShowModal () {
+      this.modal.visible = !this.modal.visible
+    }
+  },
+  mounted () {
+    $('#myModal').modal('show')
   }
 }
 

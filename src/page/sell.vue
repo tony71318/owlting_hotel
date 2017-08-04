@@ -103,7 +103,7 @@ export default {
       this.loading = true
       var postdata = {
         'user_id': this.order.user_id,
-        'room_id': this.room_id[0],
+        'room_id': this.room_id,
         'checkin_date': this.order.checkin_date.toISOString().substring(0, 10)
       }
       console.log(postdata.checkin_date)

@@ -7,26 +7,24 @@
 
         <div class="detail">
           <h4>*查詢空房</h4>
-
             
-            <calendar 
-              class="event-calendar" 
-              :value="value"
-              :disabled-days-of-week="disabled"
-              :format="format"
-              :clear-button="clear"
-              :placeholder="placeholder"
-              :hasInput="false"
-              :pane="2"
-              :change-pane="changePane"
-              >
-                <div  
-                  v-bind:class="{ event_blue: evt.color_orange , event_pink:evt.color_blue }" 
-                  v-for="evt in events" :slot="evt.date">
-                    {{evt.content}}
-                </div>
-              </calendar>    
-
+          <calendar 
+            class="event-calendar" 
+            :value="value"
+            :disabled-days-of-week="disabled"
+            :format="format"
+            :clear-button="clear"
+            :placeholder="placeholder"
+            :hasInput="false"
+            :pane="2"
+            :change-pane="changePane"
+            >
+              <div  
+                v-bind:class="{ event_blue: evt.color_orange , event_pink:evt.color_blue }" 
+                v-for="evt in events" :slot="evt.date">
+                  {{evt.content}}
+              </div>
+            </calendar>    
 
         </div>
       </div>
@@ -65,7 +63,7 @@ export default {
     }
   },
   methods: {
-    search_date: function () {
+    order_data: function () {
       this.$http.get(this.get_url)
           .then((response) => {
             this.Data = response.data
@@ -143,7 +141,7 @@ export default {
     }
   },
   mounted () {
-    this.search_date()
+    this.order_data()
   }
 }
 

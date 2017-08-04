@@ -9,11 +9,11 @@
       <div class="row">
         <div class="detail">
           <h4>*訂單資料</h4>
-          <button class="btn-sm btn-warning pull-right"  v-on:click="list_order()" v-if="Data.length > 0">重新整理</button>
+          <button class="btn-sm btn-warning pull-right"  v-on:click="list_order()" v-if="sorted_data.length > 0">重新整理</button>
           <div class="detail-white">
-            <table class="table table-condensed" v-if="Data.length > 0">
+            <table class="table table-condensed" v-if="sorted_data.length > 0">
               <tr>
-                <th></th> 
+                <!-- <th></th>  -->
                 <th>order_id</th>
                 <th>name</th>
                 <th>room_type</th>
@@ -23,8 +23,8 @@
                 <th>paid</th>
                 <th></th>
               </tr>
-              <tr v-for="(data, index) in Data">
-                <td>{{ index+1 }}</td>
+              <tr v-for="(data, index) in sorted_data.slice(pageStart, pageStart + countOfPage)">
+                <!-- <td>{{ index+1 }}</td> -->
                 <td>{{ data.order_id }}</td>
                 <td>{{ data.name }}</td>
                 <td>{{ data.room_id[0] }}</td>
@@ -40,6 +40,18 @@
                 </td>
               </tr>
             </table>
+            <div class="pull-right"> 共{{ sorted_data.length }}筆訂單 </div>
+
+            <ul class="pagination">
+              <li v-bind:class="{'disabled': (currPage === 1)}" 
+                  @click.prevent="setPage(currPage-1)"><a class="page-link" href="#">Prev</a></li>
+              <li v-for="n in totalPage"
+                  v-bind:class="{'active': (currPage === (n))}" 
+                  @click.prevent="setPage(n)"><a class="page-link" href="#">{{n}}</a></li>
+              <li v-bind:class="{'disabled': (currPage === totalPage)}" 
+                  @click.prevent="setPage(currPage+1)"><a class="page-link" href="#">Next</a></li>
+            </ul>
+
           </div>
         </div>
       </div>
@@ -118,7 +130,31 @@ export default {
       update_data: null,
       response: null,
       old_key: null,
-      loading: false
+      loading: false,
+      // pagination
+      countOfPage: 5,
+      currPage: 1
+    }
+  },
+  computed: {
+    pageStart: function () {
+      return (this.currPage - 1) * this.countOfPage
+    },
+    totalPage: function () {
+      return Math.ceil(this.Data.length / this.countOfPage)
+    },
+    sorted_data: function () {
+      function compare (a, b) {
+        if (a.start_date < b.start_date) {
+          return -1
+        }
+        if (a.start_date > b.start_date) {
+          return 1
+        }
+        return 0
+      }
+
+      return this.Data.sort(compare)
     }
   },
   methods: {
@@ -210,6 +246,12 @@ export default {
     },
     change_loading_state: function () {
       this.loading = !this.loading
+    },
+    setPage: function (idx) {
+      if (idx <= 0 || idx > this.totalPage) {
+        return
+      }
+      this.currPage = idx
     }
   },
   mounted () {
@@ -221,6 +263,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+  .pagination{
+     justify-content: center;
+  }
 
   .loading{
     position: fixed;

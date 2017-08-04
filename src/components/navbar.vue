@@ -15,7 +15,7 @@
                     </li>
 
                     <li class="active">
-                      <a href="#"><i class="fa fa-address-book-o" style="font-size:19px" aria-hidden="true"></i>&nbsp;     房號安排</a>
+                      <a href="#/checkin"><i class="fa fa-address-book-o" style="font-size:19px" aria-hidden="true"></i>&nbsp;     房號安排</a>
                     </li>
 
                     <li class="active">
@@ -33,13 +33,13 @@
                     </li>
             
                     <li class="active">
-                      <a href="#">
+                      <a href="#/checkin">
                       <i class="fa fa-user-circle-o" style="font-size:19px" aria-hidden="true"></i>&nbsp;     房務管理
                       </a>
                     </li>
 
                     <li class="active">
-                      <a href="#">
+                      <a href="#/checkin">
                       <i class="fa fa-hotel" style="font-size:19px" aria-hidden="true"></i>&nbsp;     房務清潔
                       </a>
                     </li>
